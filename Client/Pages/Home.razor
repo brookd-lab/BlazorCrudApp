@@ -1,0 +1,37 @@
+﻿@page "/"
+@page "/home"
+
+<h3>@DateTime.Now @message</h3>
+@if (value % 2 == 0)
+{
+    <p>The value was even.</p>
+}
+@foreach(var item in list)
+{
+    <p>@item</p>
+}
+<Counter amount="50" />
+<p role="status">Current count: @count</p>
+
+<button class="btn btn-primary" @onclick="() => IncrementCount(10)">Increment</button>
+<button class="btn btn-success" @onclick="DecrementCount">Decrement</button>
+
+@code {
+    int count = 0;
+
+    void IncrementCount(int value)
+    {
+        count += value;
+    }
+
+    void DecrementCount()
+    {
+        count--;
+    }
+}
+
+@code {
+    private string message = "Hello There";
+    private int value = 4;
+    private List<string> list = new List<string>() { "One","Two" };
+}
